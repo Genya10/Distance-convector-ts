@@ -1,3 +1,4 @@
+//Загрузка правил конвертации из файла json
 async function loadConversionRules(): Promise<Record<string, number>> {
   try {
     const response = await fetch('conversionRules.json');
@@ -8,10 +9,12 @@ async function loadConversionRules(): Promise<Record<string, number>> {
     return {};
   }
 }
-
+//Глобальная переменная для сохранения правил конвертации
 let conversionRules: Record<string, number> = {};
 
-async function initializeApp() {
+//Инициализация приложения
+ async function initializeApp() {
+  //Загрузка правил конвертации при старте приложения
   conversionRules = await loadConversionRules();
 
   // Добавляем динамически опции в селекторы
@@ -32,6 +35,7 @@ async function initializeApp() {
   }
 }
 
+//Функция для конвертации введенного расстояния
 function convertDistance() {
   const distanceInput = document.getElementById('distance') as HTMLInputElement;
   const unitSelect = document.getElementById('unit') as HTMLSelectElement;
