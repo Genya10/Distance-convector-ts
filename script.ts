@@ -1,3 +1,6 @@
+const unitSelect = document.getElementById('unit') as HTMLSelectElement;
+const convertToSelect = document.getElementById('convertTo') as HTMLSelectElement;
+
 //Загрузка правил конвертации из файла json
 async function loadConversionRules(): Promise<Record<string, number>> {
   try {
@@ -18,9 +21,6 @@ let conversionRules: Record<string, number> = {};
   conversionRules = await loadConversionRules();
 
   // Добавляем динамически опции в селекторы
-  const unitSelect = document.getElementById('unit') as HTMLSelectElement;
-  const convertToSelect = document.getElementById('convertTo') as HTMLSelectElement;
-
   for (const unit in conversionRules) {
     const optionUnit = document.createElement('option');
     optionUnit.value = unit;
@@ -38,8 +38,6 @@ let conversionRules: Record<string, number> = {};
 //Функция для конвертации введенного расстояния
 function convertDistance() {
   const distanceInput = document.getElementById('distance') as HTMLInputElement;
-  const unitSelect = document.getElementById('unit') as HTMLSelectElement;
-  const convertToSelect = document.getElementById('convertTo') as HTMLSelectElement;
   const resultDiv = document.getElementById('result');
 
   const distance = parseFloat(distanceInput.value);
